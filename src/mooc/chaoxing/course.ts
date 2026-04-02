@@ -9,7 +9,7 @@ export class CxCourse implements Mooc {
 
     protected taskList: Array<CxTask>;
     protected attachments: Array<any>;
-    protected timer: NodeJS.Timer;
+    protected timer: ReturnType<typeof setInterval>;
 
     public Start(): void {
         document.addEventListener("load", ev => {

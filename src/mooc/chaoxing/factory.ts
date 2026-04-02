@@ -101,6 +101,7 @@ export class TaskFactory {
                         btn.innerText = QuestionStatusString(ret);
                     });
                 } catch (e) {
+                    Application.App.log.Warn("答案搜索失败: " + e);
                 }
                 return false;
             };

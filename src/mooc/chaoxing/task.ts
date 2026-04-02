@@ -21,7 +21,7 @@ export abstract class CxTask {
     public Init(): Promise<any> {
         return new Promise(resolve => {
             this.loadCallback && this.loadCallback();
-            resolve();
+            resolve(void 0);
         });
     }
 
@@ -33,14 +33,14 @@ export abstract class CxTask {
 
     public Submit(): Promise<void> {
         return new Promise(resolve => {
-            resolve();
+            resolve(void 0);
         });
     }
 
     //TODO:停止
     public Stop(): Promise<void> {
         return new Promise(resolve => {
-            resolve();
+            resolve(void 0);
         });
     }
 }

@@ -3,10 +3,11 @@ import {Hook, Context} from "@App/internal/utils/hook";
 import {Application} from "@App/internal/application";
 import "../../views/common";
 import {randNumber, post, substrex} from "@App/internal/utils/utils";
+import {Base64} from "js-base64";
 
 export class ZhsVideo implements Mooc {
 
-    protected lastTimer: NodeJS.Timer;
+    protected lastTimer: ReturnType<typeof setTimeout>;
     protected video: HTMLVideoElement;
 
     public Start(): void {
@@ -20,6 +21,7 @@ export class ZhsVideo implements Mooc {
                 this.start();
                 clearInterval(timer);
             } catch (e) {
+                Application.App.log.Warn("智慧树启动失败,重试中: " + e);
             }
         }, 500);
     }
@@ -56,7 +58,7 @@ export class ZhsVideo implements Mooc {
         tools.appendChild(startBtn);
         tools.appendChild(boomBtn);
 
-        console.log(document.querySelector(".videotop_box.fl").append(tools));
+        document.querySelector(".videotop_box.fl").append(tools);
     }
 
     protected compile() {
@@ -200,6 +202,7 @@ export class ZhsVideo implements Mooc {
                     };
                 }
             } catch (e) {
+                Application.App.log.Warn("智慧树hook处理异常: " + e);
             }
             return next.apply(this, args);
         });

@@ -26,7 +26,7 @@ export abstract class Task {
 
     public Init(): Promise<any> {
         return new Promise<any>(resolve => {
-            return resolve();
+            return resolve(void 0);
         });
     }
 
@@ -38,13 +38,13 @@ export abstract class Task {
 
     public Submit(): Promise<void> {
         return new Promise<any>(resolve => {
-            return resolve();
+            return resolve(void 0);
         });
     }
 
     public Stop(): Promise<void> {
         return new Promise<any>(resolve => {
-            return resolve();
+            return resolve(void 0);
         });
     }
 }

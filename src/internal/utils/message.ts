@@ -69,6 +69,7 @@ class extensionClientMessage extends msg implements Client {
             super(param as string);
             this.connect();
         } else {
+            super("");
             this.conn = param as chrome.runtime.Port;
         }
         this.recv();

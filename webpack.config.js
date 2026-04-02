@@ -9,12 +9,13 @@ module.exports = {
         popup: home + '/popup.ts'
     },
     output: {
-        path: __dirname + '/build/cxmooc-tools/src',
-        filename: '[name].js'
+        path: path.resolve(__dirname, 'build/cxmooc-tools/src'),
+        filename: '[name].js',
+        clean: false
     },
     plugins: [
         new htmlWebpackPlugin({
-            filename: __dirname + '/build/cxmooc-tools/src/popup.html',
+            filename: path.resolve(__dirname, 'build/cxmooc-tools/src/popup.html'),
             template: home + '/views/popup.html',
             inject: 'head',
             title: '弹出页面',
@@ -40,6 +41,17 @@ module.exports = {
         extensions: ['.ts', '.js'],
         alias: {
             "@App": path.resolve(__dirname, 'src/'),
+        },
+        fallback: {
+            "fs": false,
+            "path": false,
+            "crypto": false
         }
+    },
+    optimization: {
+        minimize: true
+    },
+    performance: {
+        hints: false
     }
 };

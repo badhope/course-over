@@ -89,7 +89,7 @@ export class CxVideoOptimization implements Mooc {
      */
     protected Api() {
         (<any>Application.GlobalContext).sendTimePack = (time: number, callback: Function) => {
-            if (time == NaN || time == undefined) {
+            if (Number.isNaN(time) || time == undefined) {
                 time = parseInt(this.param.duration);
             }
             let playTime = Math.round(time || (this.param.duration - randNumber(1, 2)));
@@ -144,7 +144,7 @@ export class Video extends CxTask {
     protected _playbackRate: number;
     protected _muted: boolean;
     protected flash: boolean;
-    protected time: NodeJS.Timer;
+    protected time: ReturnType<typeof setInterval>;
     protected end: boolean;
 
     protected queryVideo(): HTMLVideoElement {
@@ -162,7 +162,7 @@ export class Video extends CxTask {
                             this.context.clearInterval(timer);
                             this.flash = true;
                             this.loadCallback && this.loadCallback();
-                            resolve();
+                            resolve(void 0);
                         }
                         return;
                     }
@@ -175,8 +175,9 @@ export class Video extends CxTask {
                         this.completeCallback && this.completeCallback();
                     });
                     this.loadCallback && this.loadCallback();
-                    resolve();
+                    resolve(void 0);
                 } catch (error) {
+                    Application.App.log.Warn("视频初始化异常: " + error);
                 }
             }, 500);
         });

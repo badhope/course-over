@@ -118,7 +118,7 @@ class backendConfig implements GetConfig, SetConfig {
                 chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
                     chrome.tabs.sendMessage(tabs[0].id, {type: "cxconfig", key: key, value: val});
                 });
-                resolve();
+                resolve(void 0);
             });
         });
     }

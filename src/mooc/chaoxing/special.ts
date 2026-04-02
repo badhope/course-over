@@ -6,7 +6,7 @@ import {CssBtn} from "@App/mooc/chaoxing/utils";
 import {Context, Hook} from "@App/internal/utils/hook";
 
 export class CxDocumentTask extends CxTask {
-    protected time: NodeJS.Timer;
+    protected time: ReturnType<typeof setInterval>;
 
     public Start(): void {
         let next = () => {

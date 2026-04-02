@@ -225,7 +225,7 @@ export class ToolsQuestionBank implements QuestionBank {
                     resolve(-1);
                 }
             });
-            resolve();
+            resolve(void 0);
         });
     }
 }

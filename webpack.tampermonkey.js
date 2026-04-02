@@ -1,14 +1,23 @@
+const path = require('path');
 const common = require("./webpack.config.js");
 
-let ret = common;
-ret.entry = {
-    cxmooc: __dirname + '/src/tampermonkey/cxmooc-pack.ts',
-    zhihuishu: __dirname + '/src/tampermonkey/zhihuishu-pack.ts',
-    course163: __dirname + '/src/tampermonkey/course163-pack.ts',
+module.exports = {
+    entry: {
+        cxmooc: path.resolve(__dirname, 'src/tampermonkey/cxmooc-pack.ts'),
+        zhihuishu: path.resolve(__dirname, 'src/tampermonkey/zhihuishu-pack.ts'),
+        course163: path.resolve(__dirname, 'src/tampermonkey/course163-pack.ts'),
+    },
+    output: {
+        path: path.resolve(__dirname, 'build'),
+        filename: 'tampermonkey-[name].js'
+    },
+    module: common.module,
+    resolve: common.resolve,
+    optimization: {
+        minimize: false
+    },
+    performance: {
+        hints: false
+    },
+    plugins: []
 };
-ret.output = {
-    path: __dirname + '/build',
-    filename: 'tampermonkey-[name].js'
-};
-ret.plugins = [];
-module.exports = ret;

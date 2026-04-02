@@ -50,7 +50,7 @@ export class TaskFactory {
 export class NoSupportTask extends Task {
     public Start(): Promise<any> {
         return new Promise<any>(resolve => {
-            resolve();
+            resolve(void 0);
             Application.App.log.Info("暂不支持的类型,跳过");
             this.callEvent("complete");
         });
@@ -60,7 +60,7 @@ export class NoSupportTask extends Task {
 
 export class VideoTask extends Task {
 
-    protected timer: NodeJS.Timer;
+    protected timer: ReturnType<typeof setInterval>;
     protected video: HTMLVideoElement;
 
     public Init(): Promise<any> {
@@ -78,7 +78,7 @@ export class VideoTask extends Task {
                     });
                     this.callEvent("load");
                     Application.App.log.Debug("视频加载完成");
-                    resolve();
+                    resolve(void 0);
                 }
             }, 500);
         });
@@ -88,7 +88,7 @@ export class VideoTask extends Task {
         return new Promise<any>(resolve => {
             clearInterval(this.timer);
             this.callEvent("stop");
-            resolve();
+            resolve(void 0);
         });
     }
 
@@ -106,7 +106,7 @@ export class VideoTask extends Task {
             this.timer = setInterval(() => {
                 Application.App.config.auto && this.video.paused && this.video.play();
             }, 5000);
-            resolve();
+            resolve(void 0);
         });
     }
 
@@ -250,7 +250,7 @@ export class CourseTopicTask extends Task {
                     search.innerText = QuestionStatusString(ret);
                 };
                 divel.insertBefore(search, divel.firstChild);
-                resolve();
+                resolve(void 0);
             }, 1000);
         });
     }
@@ -268,14 +268,14 @@ export class CourseTopicTask extends Task {
         return new Promise<any>(resolve => {
             let el = <HTMLLinkElement>document.querySelector(".submit.j-submit");
             if (el.style.display == "none") {
-                resolve();
+                resolve(void 0);
             }
             el.click();
             let t = setInterval(() => {
                 let el = <HTMLLinkElement>document.querySelector(".submit.j-replay");
                 if (el && el.style.display != "none") {
                     clearInterval(t);
-                    resolve();
+                    resolve(void 0);
                 }
             }, 1000);
         });
@@ -323,7 +323,7 @@ export class DiscussTask extends Task {
                 }
                 clearInterval(timer);
                 this.callEvent("complete");
-                resolve();
+                resolve(void 0);
             }, 1000);
         });
     }
@@ -336,11 +336,11 @@ export class DiscussTask extends Task {
             Application.App.log.Info("准备提交");
             let el = <HTMLButtonElement>document.querySelector(".u-btn-sm.u-btn-primary");
             if (!el) {
-                return resolve();
+                return resolve(void 0);
             }
             el.click();
             setTimeout(() => {
-                resolve();
+                resolve(void 0);
             }, 2000);
         });
     }

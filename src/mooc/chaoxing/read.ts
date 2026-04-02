@@ -6,7 +6,7 @@ import {QuestionInfo, ToolsQuestionBank} from "@App/internal/app/question";
 export class Read implements Mooc {
 
     public Start(): void {
-        let timer: NodeJS.Timer;
+        let timer: ReturnType<typeof setInterval>;
         let slide = function () {
             if ((<any>window).getScrollHeight() - (<any>window).getHeight() <= (<any>window).getScrollTop() + 40) {
                 let next = document.querySelectorAll('.mb15.course_section > a.wh.wh');

@@ -61,7 +61,7 @@ export abstract class Topic {
             this.addQuestion();
             this.answer.Push((status: QuestionStatus) => {
                 Application.App.log.Debug("采集答案返回", status);
-                resolve();
+                resolve(void 0);
             });
         });
     }

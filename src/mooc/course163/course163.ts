@@ -91,7 +91,7 @@ export class Course163 implements Mooc {
         return null;
     }
 
-    protected delayTimer: NodeJS.Timer;
+    protected delayTimer: ReturnType<typeof setTimeout>;
 
     protected delay(func: Function) {
         let interval = Application.App.config.interval;

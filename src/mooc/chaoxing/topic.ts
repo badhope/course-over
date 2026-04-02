@@ -43,7 +43,7 @@ export class TopicAdapter extends CxTask {
             Application.App.log.Debug("题目信息", this.taskinfo);
             this.topic.Init();
             this.loadCallback && this.loadCallback();
-            resolve();
+            resolve(void 0);
         });
     }
 
@@ -65,10 +65,10 @@ export class TopicAdapter extends CxTask {
         return new Promise((resolve) => {
             if (this.status == "success") {
                 this.topic.Submit().then(() => {
-                    resolve();
+                    resolve(void 0);
                 });
             } else {
-                resolve();
+                resolve(void 0);
             }
         });
     }
@@ -113,7 +113,7 @@ export class CxCourseTopic extends Topic {
                     if (this.context.document.URL.indexOf("selectWorkQuestionYiPiYue") > 0) {
                         await this.CollectAnswer();
                     }
-                    resolve();
+                    resolve(void 0);
                 }
             }, 500);
         });
@@ -152,7 +152,7 @@ export class CxCourseTopic extends Topic {
                             .addEventListener("load", async function () {
                                 if (this.contentWindow.document.URL.indexOf('selectWorkQuestionYiPiYue') > 0) {
                                     await self.CollectAnswer();
-                                    resolve();
+                                    resolve(void 0);
                                 }
                             });
                         //确定提交
@@ -188,7 +188,7 @@ export class ExamTopic extends Topic implements QueryQuestions {
 
     public Submit(): Promise<any> {
         return new Promise(resolve => {
-            resolve();
+            resolve(void 0);
         });
     }
 }
@@ -204,13 +204,13 @@ export class HomeworkTopic extends CxCourseTopic {
             if (!(<HTMLInputElement>document.querySelector("input#workRelationId"))) {
                 this.CollectAnswer();
             }
-            resolve();
+            resolve(void 0);
         });
     }
 
     public Submit(): Promise<any> {
         return new Promise(resolve => {
-            resolve();
+            resolve(void 0);
         });
     }
 }
